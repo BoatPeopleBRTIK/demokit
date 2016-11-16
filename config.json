@@ -1,0 +1,48 @@
+{
+  "general": {
+    "title": "DemoKit"
+  },
+  "use": {
+    "record_auto_send": 1,
+    "local_play": 1,
+    "virtual_gpio": 0
+  },
+  "avs": {
+    "client_id": "",
+    "client_secret": "",
+    "device_type_id": "demokit",
+    "redirect_url": "/avs/callback",
+    "speechrecognizer": "https://access-alexa-na.amazon.com/v1/avs/speechrecognizer/recognize"
+  },
+  "artikcloud": {
+    "client_id": "",
+    "client_secret": "",
+    "redirect_url": "/akc/callback",
+    "devices": {
+      "wemo": {
+        "dtid": "dtfd0ddd61f92e4a5c80c214a93dcba4cf",
+        "did": "",
+        "token": ""
+      },
+      "shell": {
+        "dtid": "dtcf3ef7e6431d4bc4849ad2f82d205ed7",
+        "did": "",
+        "token": ""
+      },
+      "player": {
+        "dtid": "dt602b63ab424d40968a1fef837ff88c1e",
+        "did": "",
+        "token": ""
+      }
+    }
+  },
+  "hue": {
+    "username": ""
+  },
+  "gpio": {
+    "sw403": 30,
+    "sw404": 32,
+    "led400": 28,
+    "led401": 38
+  }
+}
