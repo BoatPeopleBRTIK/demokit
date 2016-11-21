@@ -142,7 +142,7 @@ let ctrls = {
   }
 }
 
-if (settings.config.use.virtual_gpio) {
+if (settings.config.option.virtual_gpio) {
   ctrls.SW403 = new GpioCtrl(0, true)
   ctrls.SW404 = new GpioCtrl(0, true)
   ctrls.LED400 = new GpioCtrl(0, false)

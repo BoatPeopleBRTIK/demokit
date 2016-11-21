@@ -27,7 +27,7 @@ const MPlayer = require('mplayer')
 function playMP3 (filename) {
   console.log(filename)
 
-  if (settings.config.use.local_play !== 1) {
+  if (settings.config.option.local_play !== 1) {
     return
   }
 

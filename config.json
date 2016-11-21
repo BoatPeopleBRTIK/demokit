@@ -2,7 +2,7 @@
   "general": {
     "title": "DemoKit"
   },
-  "use": {
+  "option": {
     "record_auto_send": 1,
     "local_play": 1,
     "virtual_gpio": 0

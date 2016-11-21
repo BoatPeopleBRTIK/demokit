@@ -37,7 +37,7 @@ module.exports.setTrigger = function (src) {
     mic.stopRecording()
     st = null
 
-    if (settings.config.use.record_auto_send === 1) {
+    if (settings.config.option.record_auto_send === 1) {
       console.log('try to send wav to alexa...')
       avs.sendWav('mic_out.wav').then(function (result) {
         console.log('success: ', result)
