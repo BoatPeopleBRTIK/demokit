@@ -112,7 +112,7 @@ pactl set-card-profile 1 a2dp_sink
 ### Installing
 
 ```sh
-git clone http://github.com/...
+git clone https://github.com/SamsungARTIK/demokit
 cd demokit
 npm install
 
