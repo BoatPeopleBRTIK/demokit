@@ -3,6 +3,7 @@
     "title": "DemoKit"
   },
   "option": {
+    "scenario_mode": 1,
     "record_auto_send": 1,
     "local_play": 1,
     "virtual_gpio": 0
