@@ -50,6 +50,10 @@ dnf install autoconf automake libtool popt-devel
 make
 make install
 ```
+- Download dingdong MP3 file
+  1. Open http://www.freesfx.co.uk/download/?type=mp3&id=16513
+  1. Download MP3 file
+  1. Copy to data/ding_dong_bell_door.mp3
 
 #### Environment configuration
 
