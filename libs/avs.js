@@ -23,6 +23,9 @@ const request = require('request')
 const httpMessageParser = require('http-message-parser')
 const BufferList = require('bl')
 const MPlayer = require('mplayer')
+const player = new MPlayer()
+player.on('start', console.log.bind(this, 'playback started'))
+player.on('stop', console.log.bind(this, 'playback stoped'))
 
 function playMP3 (filename) {
   console.log(filename)
@@ -31,9 +34,6 @@ function playMP3 (filename) {
     return
   }
 
-  const player = new MPlayer()
-  player.on('start', console.log.bind(this, 'playback started'))
-  player.on('stop', console.log.bind(this, 'playback stoped'))
   player.openFile(filename)
 }
 
