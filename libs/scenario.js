@@ -16,10 +16,7 @@
 'use strict'
 
 const gpioctrl = require('./gpioctrl')
-const dingdong = require('./dingdong')
-const micRecorder = require('./micrecorder')
-const rtspPlayer = require('./playrtsp')
-const hue = require('./huectrl')
+const settings = require('./settings')
 
 function linkSwitchToLED () {
   gpioctrl.SW403.on('pressed', () => gpioctrl.LED400.setOn())
@@ -33,13 +30,13 @@ module.exports.setupMaster = function () {
 
   linkSwitchToLED()
 
-  /* Event from Real GPIO source */
+  /* Real GPIO event --> Update Webpage */
   gpioctrl.LED400.on('on', () => ipc.emitGpioEvent('LED400', 1))
   gpioctrl.LED400.on('off', () => ipc.emitGpioEvent('LED400', 0))
   gpioctrl.LED401.on('on', () => ipc.emitGpioEvent('LED401', 1))
   gpioctrl.LED401.on('off', () => ipc.emitGpioEvent('LED401', 0))
 
-  /* Event from Webpage(Fake GPIO) */
+  /* Webpage Fake GPIO event --> Real GPIO control */
   ipc.setFakeGpioHandler({
     SW403: function (status) {
       gpioctrl.LED400.setStatus(status)
@@ -49,7 +46,7 @@ module.exports.setupMaster = function () {
     }
   })
 
-  /* Event from Slave node */
+  /* Slave node GPIO event --> Update Webpage */
   ipc.setSlaveGpioHandler({
     LED400: function (status) {
       gpioctrl.SlaveGpio.LED400.setStatus(status)
@@ -59,12 +56,19 @@ module.exports.setupMaster = function () {
     }
   })
 
-  micRecorder.setTrigger(gpioctrl.LED400)
+  if (settings.config.option.scenario_mode === 1) {
+    const micRecorder = require('./micrecorder')
+    micRecorder.setTrigger(gpioctrl.LED400)
 
-  rtspPlayer.setTrigger(gpioctrl.LED401)
+    const rtspPlayer = require('./playrtsp')
+    rtspPlayer.setTrigger(gpioctrl.LED401)
 
-  dingdong.setTrigger(gpioctrl.SlaveGpio.LED400)
-  hue.setTrigger(gpioctrl.SlaveGpio.LED400)
+    const dingdong = require('./dingdong')
+    dingdong.setTrigger(gpioctrl.SlaveGpio.LED400)
+
+    const hue = require('./huectrl')
+    hue.setTrigger(gpioctrl.SlaveGpio.LED400)
+  }
 }
 
 module.exports.setupSlave = function () {
@@ -72,7 +76,7 @@ module.exports.setupSlave = function () {
 
   linkSwitchToLED()
 
-  /* Event from Real GPIO source */
+  /* Real GPIO event --> Send to Master node */
   gpioctrl.LED400.on('on', () => ipc.emitGpioEvent('LED400', 1))
   gpioctrl.LED400.on('off', () => ipc.emitGpioEvent('LED400', 0))
   gpioctrl.LED401.on('on', () => ipc.emitGpioEvent('LED401', 1))
