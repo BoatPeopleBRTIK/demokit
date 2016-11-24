@@ -70,6 +70,12 @@ module.exports.setupMaster = function () {
     hue.setTrigger(gpioctrl.SlaveGpio.LED400)
 
     require('../proxy/shellproxy')
+  } else {
+    require('../proxy/mplayer')
+
+    const bp = require('../proxy/button')
+    bp.setup(gpioctrl.LED400, settings.config.artikcloud.devices.btnm1)
+    bp.setup(gpioctrl.LED401, settings.config.artikcloud.devices.btnm2)
   }
 }
 
@@ -93,4 +99,10 @@ module.exports.setupSlave = function () {
       gpioctrl.LED401.setStatus(status)
     }
   })
+
+  if (settings.config.option.scenario_mode === 0) {
+    const bp = require('../proxy/button')
+    bp.setup(gpioctrl.LED400, settings.config.artikcloud.devices.btns1)
+    bp.setup(gpioctrl.LED401, settings.config.artikcloud.devices.btns2)
+  }
 }
