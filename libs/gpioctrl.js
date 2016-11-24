@@ -20,7 +20,7 @@ const settings = require('./settings')
 const EventEmitter = require('events')
 const util = require('util')
 const fs = require('fs')
-const Gpio = require('onoff').Gpio
+//const Gpio = require('onoff').Gpio
 
 /**
  * GpioCtrl - GPIO Controller

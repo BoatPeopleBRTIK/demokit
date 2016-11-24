@@ -131,6 +131,16 @@ router.post('/device_tokens', (req, res) => {
   settings.config.artikcloud.devices.wemo.token = req.body.wemo_token
   settings.config.artikcloud.devices.shell.did = req.body.shell_did
   settings.config.artikcloud.devices.shell.token = req.body.shell_token
+  settings.config.artikcloud.devices.mplayer.did = req.body.mplayer_did
+  settings.config.artikcloud.devices.mplayer.token = req.body.mplayer_token
+  settings.config.artikcloud.devices.btnm1.did = req.body.btnm1_did
+  settings.config.artikcloud.devices.btnm1.token = req.body.btnm1_token
+  settings.config.artikcloud.devices.btnm2.did = req.body.btnm2_did
+  settings.config.artikcloud.devices.btnm2.token = req.body.btnm2_token
+  settings.config.artikcloud.devices.btns1.did = req.body.btns1_did
+  settings.config.artikcloud.devices.btns1.token = req.body.btns1_token
+  settings.config.artikcloud.devices.btns2.did = req.body.btns2_did
+  settings.config.artikcloud.devices.btns2.token = req.body.btns2_token
   settings.Save()
   res.redirect('/setup')
 })

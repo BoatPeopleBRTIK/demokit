@@ -16,8 +16,8 @@
     "speechrecognizer": "https://access-alexa-na.amazon.com/v1/avs/speechrecognizer/recognize"
   },
   "artikcloud": {
-    "client_id": "<your-artikcloud-application-client-id>",
-    "client_secret": "<your-artikcloud-application-client-secret>",
+    "client_id": "fd3cd53f94414eac8f2a4cd6c1ffee25",
+    "client_secret": "592233303bba458386c8acacaab533ab",
     "redirect_url": "/akc/callback",
     "devices": {
       "wemo": {
@@ -27,33 +27,33 @@
       },
       "shell": {
         "dtid": "dtcf3ef7e6431d4bc4849ad2f82d205ed7",
-        "did": "",
-        "token": ""
+        "did": "fe8ef2a1d8124aabbbb289f996b2eda0",
+        "token": "8d8202f71b264635a037b56a86e51c34"
       },
       "mplayer": {
         "dtid": "dt602b63ab424d40968a1fef837ff88c1e",
-        "did": "",
-        "token": ""
+        "did": "e9ca1ce967f04124b50093c507c9cfed",
+        "token": "7aeacfae8c0c4d65aff15b2edfe78570"
       },
       "btnm1": {
         "dtid": "dt3acdb15b3779411f8d7a3458ea68b32b",
-        "did": "",
-        "token": ""
+        "did": "21ff5c5409584f0daa94b57bf8a3a34c",
+        "token": "015cd2357d0a472e928243fa6b540687"
       },
       "btnm2": {
         "dtid": "dt3acdb15b3779411f8d7a3458ea68b32b",
-        "did": "",
-        "token": ""
+        "did": "57b1447d4cf649a889305272125649cf",
+        "token": "c13a82724a054ca89c44fdb6d381609b"
       },
       "btns1": {
         "dtid": "dt3acdb15b3779411f8d7a3458ea68b32b",
-        "did": "",
-        "token": ""
+        "did": "3248cdee5c6c4e90b45a2f7924e9270f",
+        "token": "b23462dc6dcd4945badbd2da42ff91ce"
       },
       "btns2": {
         "dtid": "dt3acdb15b3779411f8d7a3458ea68b32b",
-        "did": "",
-        "token": ""
+        "did": "a4b50670d376426db19c814a183c738c",
+        "token": "ef1245f9aa8d4ade96098b7cace13a83"
       }
     }
   },
