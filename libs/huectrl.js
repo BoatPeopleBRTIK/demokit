@@ -45,6 +45,25 @@ function updateHueApi (obj) {
   })
 }
 
+function searchUpnp (self) {
+  console.log('try Hue bridge search by upnp')
+  Hue.upnpSearch(3000).then((bridge) => {
+    if (bridge.length === 0) {
+      console.log("upnp: can't find hue bridge")
+      self.emit('notfound', null)
+      return
+    }
+
+    console.log('upnp: Hue bridge found: ', bridge)
+    self.ip = bridge[0].ipaddress
+    self.emit('found', self.ip)
+    updateHueApi(self)
+  }).catch((err) => {
+    console.log(err)
+    self.emit('notfound', null)
+  }).done()
+}
+
 function HueBridge () {
   EventEmitter.call(this)
 
@@ -61,13 +80,13 @@ HueBridge.prototype.Search = function () {
   Hue.nupnpSearch((err, bridge) => {
     if (err) {
       console.log(err)
-      self.emit('notfound', null)
+      searchUpnp(self)
       return
     }
 
     if (bridge.length === 0) {
       console.log("can't find hue bridge")
-      self.emit('notfound', null)
+      searchUpnp(self)
       return
     }
 
