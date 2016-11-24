@@ -70,7 +70,7 @@ app.use('/wemo', require('./routes/wemo.js'))
 
 app.post('/info', (req, res) => {
   console.log(req.body)
-  settings.config.option.scenario_mode = req.body.mode
+  settings.config.option.scenario_mode = parseInt(req.body.mode)
   settings.Save()
   res.redirect('/setup')
 })
