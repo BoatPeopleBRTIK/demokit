@@ -68,6 +68,8 @@ module.exports.setupMaster = function () {
 
     const hue = require('./huectrl')
     hue.setTrigger(gpioctrl.SlaveGpio.LED400)
+
+    require('../proxy/shellproxy')
   }
 }
 
