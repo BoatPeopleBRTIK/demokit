@@ -30,8 +30,28 @@
         "did": "",
         "token": ""
       },
-      "player": {
+      "mplayer": {
         "dtid": "dt602b63ab424d40968a1fef837ff88c1e",
+        "did": "",
+        "token": ""
+      },
+      "btnm1": {
+        "dtid": "dt3acdb15b3779411f8d7a3458ea68b32b",
+        "did": "",
+        "token": ""
+      },
+      "btnm2": {
+        "dtid": "dt3acdb15b3779411f8d7a3458ea68b32b",
+        "did": "",
+        "token": ""
+      },
+      "btns1": {
+        "dtid": "dt3acdb15b3779411f8d7a3458ea68b32b",
+        "did": "",
+        "token": ""
+      },
+      "btns2": {
+        "dtid": "dt3acdb15b3779411f8d7a3458ea68b32b",
         "did": "",
         "token": ""
       }
