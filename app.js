@@ -70,6 +70,13 @@ app.use('/akc', require('./routes/akc.js'))
 app.use('/hue', require('./routes/hue.js'))
 app.use('/wemo', require('./routes/wemo.js'))
 
+app.post('/info', (req, res) => {
+  console.log(req.body)
+  settings.config.option.scenario_mode = req.body.mode
+  settings.Save()
+  res.redirect('/setup')
+})
+
 app.get('/', function (req, res, next) {
   res.render('index', {
     demokit: settings,

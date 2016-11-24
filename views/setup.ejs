@@ -1,6 +1,36 @@
 <%- include header.ejs %>
 
 <div class="panel panel-default">
+  <div class="panel-heading">DemoKit</div>
+  <div class="panel-body">
+
+    <form class="form-horizontal" id="form_demokit_info" method="post" action="/info">
+      <div class="form-group">
+        <label class="control-label col-xs-3">DemoKit mode</label>
+        <div class="col-xs-9">
+          <div class="radio">
+            <label>
+              <input type="radio" name="mode" value=1 <% if (demokit.config.option.scenario_mode == '1') { %> checked <% } %>>Scenario mode
+              <div>Predefined internal logic + Alexa Rule</div>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="mode" value=0 <% if (demokit.config.option.scenario_mode == '0') { %> checked <% } %>>Custom mode
+              <div>ARTIK Cloud Rule base logic</div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="btn-group pull-right" role="group">
+      <button onclick="$('#form_demokit_info').submit();" class="btn btn-default">Save</a>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
   <div class="panel-heading">Alexa Voice Service</div>
   <div class="panel-body">
 
