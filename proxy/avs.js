@@ -27,7 +27,7 @@ avsProxy.on('connect', function () {
 })
 
 avsProxy.on('actions', function (data) {
-  console.log('shell proxy action received from ARTIK Cloud: ', data)
+  console.log('avs proxy action received from ARTIK Cloud: ', data)
   if (data.actions == null || data.actions.length === 0) {
     return
   }
