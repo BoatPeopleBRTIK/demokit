@@ -25,25 +25,40 @@ const mic = new Mic({ device: 'default' })
 
 let st = null
 
+function startRecording () {
+  if (st != null) {
+    console.log('busy')
+    return
+  }
+
+  console.log('start voice recording...')
+  st = mic.startRecording()
+  st.pipe(fs.createWriteStream(settings.data_path + '/mic_out.wav'))
+}
+
+function stopRecording () {
+  if (st === null) {
+    console.log('recording not started')
+    return
+  }
+
+  console.log('stop voice recording...')
+  mic.stopRecording()
+  st = null
+
+  if (settings.config.option.record_auto_send === 1) {
+    console.log('try to send wav to alexa...')
+    avs.sendWav('mic_out.wav').then(function (result) {
+      console.log('success: ', result)
+    }).catch(function (err) {
+      console.log('failure: ', err)
+    })
+  }
+}
+
+module.exports.startRecording = startRecording
+module.exports.stopRecording = stopRecording
 module.exports.setTrigger = function (src) {
-  src.on('on', function () {
-    console.log('start voice recording...')
-    st = mic.startRecording()
-    st.pipe(fs.createWriteStream(settings.data_path + '/mic_out.wav'))
-  })
-
-  src.on('off', function () {
-    console.log('stop voice recording...')
-    mic.stopRecording()
-    st = null
-
-    if (settings.config.option.record_auto_send === 1) {
-      console.log('try to send wav to alexa...')
-      avs.sendWav('mic_out.wav').then(function (result) {
-        console.log('success: ', result)
-      }).catch(function (err) {
-        console.log('failure: ', err)
-      })
-    }
-  })
+  src.on('on', startRecording)
+  src.on('off', stopRecording)
 }
