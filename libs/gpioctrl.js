@@ -154,21 +154,6 @@ if (settings.config.option.virtual_gpio) {
   ctrls.LED401 = new GpioCtrl(settings.config.gpio.led401, false)
 }
 
-/* link each button to led */
-/*
-ctrls.SW403.on('pressed', function () {
-  ctrls.LED400.setOn()
-})
-ctrls.SW403.on('released', function () {
-  ctrls.LED400.setOff()
-})
+module.exports.GpioCtrl = GpioCtrl
+module.exports.ctrls = ctrls
 
-ctrls.SW404.on('pressed', function () {
-  ctrls.LED401.setOn()
-})
-ctrls.SW404.on('released', function () {
-  ctrls.LED401.setOff()
-})
-*/
-
-module.exports = ctrls

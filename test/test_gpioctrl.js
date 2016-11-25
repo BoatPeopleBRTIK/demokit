@@ -15,7 +15,7 @@
  */
 var assert = require('assert')
 
-var GpioCtrl = require('../libs/gpioctrl')
+var GpioCtrl = require('../libs/gpioctrl').GpioCtrl
 
 describe('gpioctrl', function () {
   var ctrl = new GpioCtrl(0, true)

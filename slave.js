@@ -87,5 +87,3 @@ rtspservice.child.on('close', function (code, signal) {
 rtspservice.child.on('error', function (err) {
   ipc.sendLog(err)
 })
-
-require('./proxy/wemo')

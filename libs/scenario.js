@@ -15,7 +15,7 @@
  */
 'use strict'
 
-const gpioctrl = require('./gpioctrl')
+const gpioctrl = require('./gpioctrl').ctrls
 const settings = require('./settings')
 
 function linkSwitchToLED () {
@@ -105,5 +105,9 @@ module.exports.setupSlave = function () {
     const bp = require('../proxy/button')
     bp.setup(gpioctrl.LED400, settings.config.artikcloud.devices.btns1)
     bp.setup(gpioctrl.LED401, settings.config.artikcloud.devices.btns2)
+  } else {
+    require('../proxy/slidingdoor')
   }
+
+  require('../proxy/wemo')
 }
