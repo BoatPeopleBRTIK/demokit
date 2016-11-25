@@ -102,11 +102,11 @@ module.exports.setupSlave = function () {
   })
 
   if (settings.config.option.scenario_mode === 0) {
+    require('../proxy/slidingdoor')
+
     const bp = require('../proxy/button')
     bp.setup(gpioctrl.LED400, settings.config.artikcloud.devices.btns1)
     bp.setup(gpioctrl.LED401, settings.config.artikcloud.devices.btns2)
-  } else {
-    require('../proxy/slidingdoor')
   }
 
   require('../proxy/wemo')
