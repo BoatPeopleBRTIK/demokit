@@ -64,6 +64,11 @@
         "dtid": "dt3835e53b14a64a978f3de8208ddfcd14",
         "did": "",
         "token": ""
+      },
+      "rtsp": {
+        "dtid": "dt28abd06148504d39af96e06628fc6405",
+        "did": "",
+        "token": ""
       }
     }
   },

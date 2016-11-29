@@ -145,6 +145,8 @@ router.post('/device_tokens', (req, res) => {
   settings.config.artikcloud.devices.avs.token = req.body.avs_token
   settings.config.artikcloud.devices.sliding.did = req.body.sliding_did
   settings.config.artikcloud.devices.sliding.token = req.body.sliding_token
+  settings.config.artikcloud.devices.rtsp.did = req.body.rtsp_did
+  settings.config.artikcloud.devices.rtsp.token = req.body.rtsp_token
   settings.Save()
   res.redirect('/setup')
 })

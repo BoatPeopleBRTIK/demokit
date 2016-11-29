@@ -73,6 +73,7 @@ module.exports.setupMaster = function () {
   } else {
     require('../proxy/mplayer')
     require('../proxy/avs')
+    require('../proxy/rtsp')
 
     const bp = require('../proxy/button')
     bp.setup(gpioctrl.LED400, settings.config.artikcloud.devices.btnm1)
