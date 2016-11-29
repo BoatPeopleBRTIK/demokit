@@ -36,7 +36,9 @@ sdProxy.on('actions', function (data) {
     sdctrl.up()
     sdctrl.enable()
   } else if (cmd === 'unlock') {
-    sdctrl.down()
-    sdctrl.enable()
+    setTimeout(() => {
+      sdctrl.down()
+      sdctrl.enable()
+    }, 2000)
   }
 })
