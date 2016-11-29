@@ -88,7 +88,9 @@ RtspPlayer.prototype.toggle = function toggle () {
 }
 
 RtspPlayer.prototype.setTrigger = function (src) {
-  src.on('on', this.toggle)
+  src.on('on', () => {
+    RtspPlayer.prototype.toggle.call(rp)
+  })
 }
 
 RtspPlayer.prototype.add = function (name, url) {
