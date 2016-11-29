@@ -65,7 +65,7 @@ function setOn (cb) {
     return
   }
 
-  console.log('sd down')
+  console.log('sd up')
   sd.up()
   sd.enable()
 
