@@ -17,20 +17,28 @@
 
 const spawn = require('child_process').spawn
 const ipc = require('./ipc_server')
-const list = new Map()
+const EventEmitter = require('events')
+const util = require('util')
 
-let iter = list.entries()
-let camplayer = null
+function RtspPlayer () {
+  EventEmitter.call(this)
 
-function start (url) {
-  if (camplayer) {
+  this.list = new Map()
+  this.iter = this.list.entries()
+  this.camplayer = null
+}
+
+util.inherits(RtspPlayer, EventEmitter)
+
+RtspPlayer.prototype.start = function start (url) {
+  if (this.camplayer) {
     console.log('already started')
     return
   }
 
   if (url === undefined) {
-    iter = list.entries()
-    let item = iter.next()
+    this.iter = this.list.entries()
+    let item = this.iter.next()
     url = item.value[1]
   }
 
@@ -44,49 +52,47 @@ function start (url) {
   ]
 
   ipc.sendLog('play from ', url)
-  camplayer = spawn('gst-launch-1.0', args)
-  camplayer.on('error', function (err) {
+  this.camplayer = spawn('gst-launch-1.0', args)
+  this.camplayer.on('error', function (err) {
     console.log(err)
   })
-  camplayer.on('close', function (code, signal) {
+  this.camplayer.on('close', function (code, signal) {
     console.log('closed:', code, signal)
   })
+  this.emit('start')
 }
 
-function stop () {
-  if (camplayer == null) {
+RtspPlayer.prototype.stop = function stop () {
+  if (this.camplayer == null) {
     console.log('already stopped')
     return
   }
 
-  camplayer.kill('SIGHUP')
-  camplayer = null
+  this.camplayer.kill('SIGHUP')
+  this.camplayer = null
+  this.emit('stop')
 }
 
-function toggle () {
-  let item = iter.next()
+RtspPlayer.prototype.toggle = function toggle () {
+  let item = this.iter.next()
   if (item.done) {
-    iter = list.entries()
-    item = iter.next()
+    this.iter = this.list.entries()
+    item = this.iter.next()
   }
 
-  if (camplayer) {
-    stop()
+  if (this.camplayer) {
+    this.stop()
   }
 
-  start(item.value[1])
+  this.start(item.value[1])
 }
 
-module.exports.start = start
-module.exports.stop = stop
-module.exports.toggle = toggle
-
-module.exports.setTrigger = function (src) {
-  src.on('on', toggle)
+RtspPlayer.prototype.setTrigger = function (src) {
+  src.on('on', this.toggle)
 }
 
-module.exports.add = function (name, url) {
-  if (list.get(name)) {
+RtspPlayer.prototype.add = function (name, url) {
+  if (this.list.get(name)) {
     return
   }
 
@@ -100,15 +106,21 @@ module.exports.add = function (name, url) {
     url = 'rtsp://admin:1234@' + ip + '/profile4/media.smp'
   }
 
-  list.set(name, url)
+  this.list.set(name, url)
   ipc.sendLog('RTSP Server added: ', name, url)
+  this.emit('added', name, url)
 }
 
-module.exports.remove = function (name) {
-  if (list.get(name) == null) {
+RtspPlayer.prototype.remove = function (name) {
+  if (this.list.get(name) == null) {
     return
   }
 
+  this.list.delete(name)
   ipc.sendLog('RTSP Server removed: ', name)
-  list.delete(name)
+  this.emit('removed', name)
 }
+
+const rp = new RtspPlayer()
+
+module.exports = rp
