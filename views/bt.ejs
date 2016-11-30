@@ -1,0 +1,41 @@
+<%- include header.ejs %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Bluetooth Control</div>
+  <div class="panel-body">
+    <div class="form-horizontal">
+      <div class="btn-group pull-right" role="group">
+        <input type="checkbox" id="switch_scan" data-label-text="Scan">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Devices</div>
+  <div class="panel-body">
+
+    <div class="btn-group pull-right" role="group">
+      <button id="btn_refresh" class="btn btn-default">Refresh</a>
+    </div>
+
+    <table id="devices"
+            class="table table-hover table-condensed"
+            fixed-header>
+      <thead>
+        <tr>
+          <th class="col-xs-3">Address</th>
+          <th class="col-xs-5">Name</th>
+          <th class="col-xs-2 text-center">Pairing</th>
+          <th class="col-xs-2 text-center">Connect</th>          
+        </tr>
+      </thead>
+      <tbody><tr></tr></tbody>
+    </table>
+
+  </div>
+</div>
+
+<%- include footer.ejs %>
+
+<script src="/javascripts/page_bt.js"></script>

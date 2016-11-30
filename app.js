@@ -69,6 +69,7 @@ if (settings.config.option.scenario_mode === 1) {
   app.use('/hue', require('./routes/hue.js'))
 }
 app.use('/wemo', require('./routes/wemo.js'))
+app.use('/bt', require('./routes/bt.js'))
 
 app.post('/info', (req, res) => {
   console.log(req.body)
