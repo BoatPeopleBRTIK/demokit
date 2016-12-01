@@ -1,5 +1,6 @@
 
 var socket = null
+var autoRefreshTimer = null
 
 $('#switch_scan').bootstrapSwitch({
   onSwitchChange: function (e, s) {
@@ -20,11 +21,28 @@ $('#switch_scan').bootstrapSwitch({
   }
 })
 
+$('#switch_autorefresh').bootstrapSwitch({
+  onSwitchChange: function (e, s) {
+    if (autoRefreshTimer) {
+      clearInterval(autoRefreshTimer)
+    }
+
+    if (s === true) {
+      autoRefreshTimer = setInterval(refresh, 1000)
+      $('#btn_refresh').prop('disabled', true)
+      $('#btn_refresh').html('<i class="fa fa-spinner fa-pulse fa-fw"></i> Refresh')
+    } else {
+      $('#btn_refresh').prop('disabled', false)
+      $('#btn_refresh').html('Refresh')
+    }
+  }
+})
+
 function requestBT (cmd, path) {
   $.ajax({
-    url: '/bt/control',
+    url: '/bt/control/' + cmd,
     method: 'POST',
-    data: { cmd: cmd, path: path }
+    data: { path: path }
   }).fail(function (err) {
     console.log(err)
     $.notify(err.responseText)
@@ -63,7 +81,7 @@ function appendToDevices (item) {
   $('#devices > tbody > tr:last').after(row)
 }
 
-$('#btn_refresh').on('click', function () {
+function refresh () {
   $.ajax({ url: '/bt/refresh' }).fail(function (err) {
     console.log(err)
     $.notify(err.responseText)
@@ -75,7 +93,9 @@ $('#btn_refresh').on('click', function () {
     tbody.append('<tr />')
     jsonData.result.forEach(appendToDevices)
   })
-})
+}
+
+$('#btn_refresh').on('click', refresh())
 
 $(function () {
   socket = io('/web')

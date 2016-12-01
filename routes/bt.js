@@ -51,9 +51,9 @@ router.get('/', function (req, res, next) {
 router.get('/scan/on', (req, res) => {
   bus.invoke({
     destination: 'org.bluez',
-    member: 'StartDiscovery',
+    path: '/org/bluez/hci0',
     interface: 'org.bluez.Adapter1',
-    path: '/org/bluez/hci0'
+    member: 'StartDiscovery'
   }, function (err, result) {
     if (err) {
       console.log('error:', err)
@@ -67,9 +67,9 @@ router.get('/scan/on', (req, res) => {
 router.get('/scan/off', (req, res) => {
   bus.invoke({
     destination: 'org.bluez',
-    member: 'StopDiscovery',
+    path: '/org/bluez/hci0',
     interface: 'org.bluez.Adapter1',
-    path: '/org/bluez/hci0'
+    member: 'StopDiscovery'
   }, function (err, result) {
     if (err) {
       console.log('error:', err)
@@ -83,21 +83,20 @@ router.get('/scan/off', (req, res) => {
 router.get('/refresh', (req, res) => {
   bus.invoke({
     destination: 'org.bluez',
-    member: 'GetManagedObjects',
+    path: '/',
     interface: 'org.freedesktop.DBus.ObjectManager',
-    path: '/'
+    member: 'GetManagedObjects'
   }, function (err, result) {
     if (err) {
       console.log('error:', err)
     } else {
       let list = []
       result.forEach((item) => {
-        console.log(item[0])
         item[1].forEach((iface) => {
           if (iface[0] === 'org.bluez.Device1') {
             let dev = devprop2json(iface[1])
             dev.path = item[0]
-
+            console.log(dev)
             list.push(dev)
           }
         })
@@ -107,13 +106,74 @@ router.get('/refresh', (req, res) => {
   })
 })
 
-router.post('/control', (req, res) => {
-  console.log(req.body.cmd, req.body.path)
-  /*
-   * TODO
-   * pair / unpair / conn / disconn
-   */
-  res.end()
+router.post('/control/pair', (req, res) => {
+  console.log(req.body.path)
+  bus.invoke({
+    destination: 'org.bluez',
+    path: req.body.path,
+    interface: 'org.bluez.Device1',
+    member: 'Pair'
+  }, function (err, result) {
+    if (err) {
+      console.log('error:', err)
+      res.status(500).send(err.toString())
+    } else {
+      res.end()
+    }
+  })
+})
+
+router.post('/control/unpair', (req, res) => {
+  console.log(req.body.path)
+  bus.invoke({
+    destination: 'org.bluez',
+    path: '/org/bluez/hci0',
+    interface: 'org.bluez.Adapter1',
+    member: 'RemoveDevice',
+    signature: 'o',
+    body: [ req.body.path ]
+  }, function (err, result) {
+    if (err) {
+      console.log('error:', err)
+      res.status(500).send(err.toString())
+    } else {
+      res.end()
+    }
+  })
+})
+
+router.post('/control/conn', (req, res) => {
+  console.log(req.body.path)
+  bus.invoke({
+    destination: 'org.bluez',
+    path: req.body.path,
+    interface: 'org.bluez.Device1',
+    member: 'Connect'
+  }, function (err, result) {
+    if (err) {
+      console.log('error:', err)
+      res.status(500).send(err.toString())
+    } else {
+      res.end()
+    }
+  })
+})
+
+router.post('/control/disconn', (req, res) => {
+  console.log(req.body.path)
+  bus.invoke({
+    destination: 'org.bluez',
+    path: req.body.path,
+    interface: 'org.bluez.Device1',
+    member: 'Disconnect'
+  }, function (err, result) {
+    if (err) {
+      console.log('error:', err)
+      res.status(500).send(err.toString())
+    } else {
+      res.end()
+    }
+  })
 })
 
 module.exports = router

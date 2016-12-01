@@ -4,7 +4,7 @@
   <div class="panel-heading">Bluetooth Control</div>
   <div class="panel-body">
     <div class="form-horizontal">
-      <div class="btn-group pull-right" role="group">
+      <div class="pull-right" role="group">
         <input type="checkbox" id="switch_scan" data-label-text="Scan">
       </div>
     </div>
@@ -15,8 +15,9 @@
   <div class="panel-heading">Devices</div>
   <div class="panel-body">
 
-    <div class="btn-group pull-right" role="group">
-      <button id="btn_refresh" class="btn btn-default">Refresh</a>
+    <div class="pull-right" role="group">
+      <button id="btn_refresh" class="btn btn-default">Refresh</button>
+      <input type="checkbox" id="switch_autorefresh" data-label-text="Auto Refresh (1s)"/>
     </div>
 
     <table id="devices"
