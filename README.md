@@ -211,6 +211,7 @@ demokit/node_modules/mdns/lib/resolver_sequence_tasks.js
 - [Express](http://expressjs.com/): [body-parser](https://www.npmjs.com/package/body-parser), [cookie-parser](https://www.npmjs.com/package/cookie-parser), [debug](https://www.npmjs.com/package/debug), [ejs](https://www.npmjs.com/package/ejs), [express](https://www.npmjs.com/package/express), [morgan](https://www.npmjs.com/package/morgan), [serve-favicon](https://www.npmjs.com/package/serve-favicon)
 - [bl](https://www.npmjs.com/package/bl) - Buffer List: collect buffers and access with a standard readable Buffer interface, streamable too!
 - [child-process-promise](https://www.npmjs.com/package/child-process-promise) - Simple wrapper around the "child_process" module that makes use of promises
+- [dbus-native](https://www.npmjs.com/package/dbus-native) - D-bus protocol implementation in native javascript
 - [http-message-parser](https://www.npmjs.com/package/http-message-parser) - HTTP message parser in JavaScript.
 - [mdns](https://www.npmjs.com/package/mdns) - multicast DNS service discovery
 - [mplayer](https://www.npmjs.com/package/mplayer) - Node.js wrapper for mplayer
