@@ -135,155 +135,175 @@
     </div>
 
     <form class="form-horizontal" id="form_device_token" method="post" action="/akc/device_tokens">
-      <div class="col-xs-12 bg-info">
-        Belkin WeMo Insight Switch Proxy
+      <div class='well'>
+        <fieldset>
+          <legend>Belkin WeMo Insight Switch Proxy</legend>
+          <div class="form-group">
+            <label class="control-label col-xs-3">DID</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="wemo_did" type=text value="<%= demokit.config.artikcloud.devices.wemo.did %>"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-3">Token</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="wemo_token" type=text value="<%= demokit.config.artikcloud.devices.wemo.token %>"></input>
+            </div>
+          </div>	
+        </fieldset>
       </div>
-      <div class="form-group">
-        <label class="control-label col-xs-3">DID</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="wemo_did" type=text value="<%= demokit.config.artikcloud.devices.wemo.did %>"></input>
-        </div>
+      <div class='well'>
+        <fieldset>
+          <legend>Shell Proxy</legend>
+          <div class="form-group">
+            <label class="control-label col-xs-3">DID</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="shell_did" type=text value="<%= demokit.config.artikcloud.devices.shell.did %>"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-3">Token</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="shell_token" type=text value="<%= demokit.config.artikcloud.devices.shell.token %>"></input>
+            </div>
+          </div>
+        </fieldset>
       </div>
-      <div class="form-group">
-        <label class="control-label col-xs-3">Token</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="wemo_token" type=text value="<%= demokit.config.artikcloud.devices.wemo.token %>"></input>
-        </div>
-      </div>	
-      <div class="col-xs-12 bg-info">
-        Shell Proxy
-      </div>	
-      <div class="form-group">
-        <label class="control-label col-xs-3">DID</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="shell_did" type=text value="<%= demokit.config.artikcloud.devices.shell.did %>"></input>
-        </div>
+      <div class='well'>
+        <fieldset>
+          <legend>MPlayer Proxy</legend>
+          <div class="form-group">
+            <label class="control-label col-xs-3">DID</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="mplayer_did" type=text value="<%= demokit.config.artikcloud.devices.mplayer.did %>"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-3">Token</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="mplayer_token" type=text value="<%= demokit.config.artikcloud.devices.mplayer.token %>"></input>
+            </div>
+          </div>
+        </fieldset>
       </div>
-      <div class="form-group">
-        <label class="control-label col-xs-3">Token</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="shell_token" type=text value="<%= demokit.config.artikcloud.devices.shell.token %>"></input>
-        </div>
+      <div class='well'>
+        <fieldset>
+          <legend>Button Proxy - Master1</legend>
+          <div class="form-group">
+            <label class="control-label col-xs-3">DID</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="btnm1_did" type=text value="<%= demokit.config.artikcloud.devices.btnm1.did %>"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-3">Token</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="btnm1_token" type=text value="<%= demokit.config.artikcloud.devices.btnm1.token %>"></input>
+            </div>
+          </div>
+        </fieldset>
       </div>
-      <div class="col-xs-12 bg-info">
-        MPlayer Proxy
-      </div>	
-      <div class="form-group">
-        <label class="control-label col-xs-3">DID</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="mplayer_did" type=text value="<%= demokit.config.artikcloud.devices.mplayer.did %>"></input>
-        </div>
+      <div class='well'>
+        <fieldset>
+          <legend>Button Proxy - Master2</legend>
+          <div class="form-group">
+            <label class="control-label col-xs-3">DID</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="btnm2_did" type=text value="<%= demokit.config.artikcloud.devices.btnm2.did %>"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-3">Token</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="btnm2_token" type=text value="<%= demokit.config.artikcloud.devices.btnm2.token %>"></input>
+            </div>
+          </div>
+        </fieldset>
       </div>
-      <div class="form-group">
-        <label class="control-label col-xs-3">Token</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="mplayer_token" type=text value="<%= demokit.config.artikcloud.devices.mplayer.token %>"></input>
-        </div>
+      <div class='well'>
+        <fieldset>
+          <legend>Button Proxy - Slave1</legend>
+          <div class="form-group">
+            <label class="control-label col-xs-3">DID</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="btns1_did" type=text value="<%= demokit.config.artikcloud.devices.btns1.did %>"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-3">Token</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="btns1_token" type=text value="<%= demokit.config.artikcloud.devices.btns1.token %>"></input>
+            </div>
+          </div>
+        </fieldset>
       </div>
-      <div class="col-xs-12 bg-info">
-        Button Proxy - Master1
-      </div>	
-      <div class="form-group">
-        <label class="control-label col-xs-3">DID</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="btnm1_did" type=text value="<%= demokit.config.artikcloud.devices.btnm1.did %>"></input>
-        </div>
+      <div class='well'>
+        <fieldset>
+          <legend>Button Proxy - Slave2</legend>
+          <div class="form-group">
+            <label class="control-label col-xs-3">DID</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="btns2_did" type=text value="<%= demokit.config.artikcloud.devices.btns2.did %>"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-3">Token</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="btns2_token" type=text value="<%= demokit.config.artikcloud.devices.btns2.token %>"></input>
+            </div>
+          </div>
+        </fieldset>
       </div>
-      <div class="form-group">
-        <label class="control-label col-xs-3">Token</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="btnm1_token" type=text value="<%= demokit.config.artikcloud.devices.btnm1.token %>"></input>
-        </div>
+      <div class='well'>
+        <fieldset>
+          <legend>AVS(Alexa Voice Service) Proxy</legend>
+          <div class="form-group">
+            <label class="control-label col-xs-3">DID</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="avs_did" type=text value="<%= demokit.config.artikcloud.devices.avs.did %>"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-3">Token</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="avs_token" type=text value="<%= demokit.config.artikcloud.devices.avs.token %>"></input>
+            </div>
+          </div>
+        </fieldset>
       </div>
-      <div class="col-xs-12 bg-info">
-        Button Proxy - Master2
-      </div>	
-      <div class="form-group">
-        <label class="control-label col-xs-3">DID</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="btnm2_did" type=text value="<%= demokit.config.artikcloud.devices.btnm2.did %>"></input>
-        </div>
+      <div class='well'>
+        <fieldset>
+          <legend>Sliding door Proxy</legend>
+          <div class="form-group">
+            <label class="control-label col-xs-3">DID</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="sliding_did" type=text value="<%= demokit.config.artikcloud.devices.sliding.did %>"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-3">Token</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="sliding_token" type=text value="<%= demokit.config.artikcloud.devices.sliding.token %>"></input>
+            </div>
+          </div>
+        </fieldset>
       </div>
-      <div class="form-group">
-        <label class="control-label col-xs-3">Token</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="btnm2_token" type=text value="<%= demokit.config.artikcloud.devices.btnm2.token %>"></input>
-        </div>
-      </div>
-     <div class="col-xs-12 bg-info">
-        Button Proxy - Slave1
-      </div>	
-      <div class="form-group">
-        <label class="control-label col-xs-3">DID</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="btns1_did" type=text value="<%= demokit.config.artikcloud.devices.btns1.did %>"></input>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-xs-3">Token</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="btns1_token" type=text value="<%= demokit.config.artikcloud.devices.btns1.token %>"></input>
-        </div>
-      </div>
-      <div class="col-xs-12 bg-info">
-        Button Proxy - Slave2
-      </div>	
-      <div class="form-group">
-        <label class="control-label col-xs-3">DID</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="btns2_did" type=text value="<%= demokit.config.artikcloud.devices.btns2.did %>"></input>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-xs-3">Token</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="btns2_token" type=text value="<%= demokit.config.artikcloud.devices.btns2.token %>"></input>
-        </div>
-      </div>
-      <div class="col-xs-12 bg-info">
-        AVS(Alexa Voice Service) Proxy
-      </div>	
-      <div class="form-group">
-        <label class="control-label col-xs-3">DID</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="avs_did" type=text value="<%= demokit.config.artikcloud.devices.avs.did %>"></input>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-xs-3">Token</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="avs_token" type=text value="<%= demokit.config.artikcloud.devices.avs.token %>"></input>
-        </div>
-      </div>
-      <div class="col-xs-12 bg-info">
-        Sliding door Proxy
-      </div>	
-      <div class="form-group">
-        <label class="control-label col-xs-3">DID</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="sliding_did" type=text value="<%= demokit.config.artikcloud.devices.sliding.did %>"></input>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-xs-3">Token</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="sliding_token" type=text value="<%= demokit.config.artikcloud.devices.sliding.token %>"></input>
-        </div>
-      </div>
-      <div class="col-xs-12 bg-info">
-        RTSP Player Proxy
-      </div>	
-      <div class="form-group">
-        <label class="control-label col-xs-3">DID</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="rtsp_did" type=text value="<%= demokit.config.artikcloud.devices.rtsp.did %>"></input>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-xs-3">Token</label>
-        <div class="col-xs-9">
-          <input class="form-control" name="rtsp_token" type=text value="<%= demokit.config.artikcloud.devices.rtsp.token %>"></input>
-        </div>
+      <div class='well'>
+        <fieldset>
+          <legend>RTSP Player Proxy</legend>
+          <div class="form-group">
+            <label class="control-label col-xs-3">DID</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="rtsp_did" type=text value="<%= demokit.config.artikcloud.devices.rtsp.did %>"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-3">Token</label>
+            <div class="col-xs-9">
+              <input class="form-control" name="rtsp_token" type=text value="<%= demokit.config.artikcloud.devices.rtsp.token %>"></input>
+            </div>
+          </div>
+        </fieldset>
       </div>
     </form>
 
