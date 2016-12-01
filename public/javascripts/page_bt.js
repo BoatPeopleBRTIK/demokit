@@ -95,7 +95,7 @@ function refresh () {
   })
 }
 
-$('#btn_refresh').on('click', refresh())
+$('#btn_refresh').on('click', refresh)
 
 $(function () {
   socket = io('/web')
