@@ -148,6 +148,7 @@ router.post('/device_tokens', (req, res) => {
   settings.config.artikcloud.devices.rtsp.did = req.body.rtsp_did
   settings.config.artikcloud.devices.rtsp.token = req.body.rtsp_token
   settings.Save()
+  ipc.sendConfig()
   res.redirect('/setup')
 })
 

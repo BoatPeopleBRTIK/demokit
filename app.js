@@ -18,6 +18,7 @@
 const settings = require('./libs/settings')
 const rtspPlayer = require('./libs/playrtsp')
 const scenario = require('./libs/scenario')
+const ipc = require('./libs/ipc_server')
 
 const express = require('express')
 const path = require('path')
@@ -75,6 +76,7 @@ app.post('/info', (req, res) => {
   console.log(req.body)
   settings.config.option.scenario_mode = parseInt(req.body.mode)
   settings.Save()
+  ipc.sendConfig()
   res.redirect('/setup')
 })
 
