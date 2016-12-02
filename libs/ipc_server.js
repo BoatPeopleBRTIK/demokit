@@ -161,6 +161,10 @@ module.exports.setSlaveGpioHandler = function (handler) {
   slaveGpioHandler = handler
 }
 
+module.exports.sendReboot = function () {
+  slave.emit('reboot', 1)
+}
+
 module.exports.sendConfig = sendConfig
 module.exports.sendLog = sendLog
 module.exports.web = web

@@ -17,6 +17,7 @@
 
 const path = require('path')
 const fs = require('fs')
+const exec = require('child_process').exec
 
 const settings = {
   config: require('../config.json'),
@@ -35,6 +36,16 @@ const settings = {
   data_path: path.join(__dirname, '/../public/'),
   Save: function () {
     fs.writeFile('./config.json', JSON.stringify(settings.config, null, 2))
+  },
+  reboot: function () {
+    exec('shutdown -r now', function (err, stdout, stderr) {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log(stdout)
+        console.log(stderr)
+      }
+    })
   }
 }
 

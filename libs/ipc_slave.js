@@ -116,6 +116,11 @@ module.exports.connect = function (addr) {
     settings.Save()
   })
 
+  socket.on('config', (data) => {
+    console.log('reboot request from master')
+    setting.Reboot()
+  })
+
   sendStatus()
 }
 
