@@ -54,6 +54,10 @@ function updateStatus () {
   console.log('- slave client count:', Object.keys(slave.sockets).length)
 }
 
+function sendConfig () {
+  slave.emit('config', settings.config)
+}
+
 web.on('connection', function (socket) {
   /* Send current status */
   socket.emit('settings', settings)
@@ -157,6 +161,7 @@ module.exports.setSlaveGpioHandler = function (handler) {
   slaveGpioHandler = handler
 }
 
+module.exports.sendConfig = sendConfig
 module.exports.sendLog = sendLog
 module.exports.web = web
 module.exports.slave = slave
