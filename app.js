@@ -80,12 +80,12 @@ app.post('/info', (req, res) => {
   res.redirect('/setup')
 })
 
-app.get('/reboot/master', (req, res) => {
+app.post('/reboot/master', (req, res) => {
   res.end()
   settings.reboot()
 })
 
-app.get('/reboot/slave', (req, res) => {
+app.post('/reboot/slave', (req, res) => {
   ipc.sendReboot()
   res.end()
 })

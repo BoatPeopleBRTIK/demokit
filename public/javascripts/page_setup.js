@@ -57,3 +57,23 @@ function get_registered_username () {
       $('#get_registered_username_btn').html('Get registered username')
     })
 }
+
+$('#btn_reboot_master').on('click', function () {
+  $.ajax({
+    url: '/reboot/master',
+    method: 'POST',
+  }).fail(function (err) {
+    console.log(err)
+    $.notify(err.responseText)
+  })
+})
+
+$('#btn_reboot_slave').on('click', function () {
+  $.ajax({
+    url: '/reboot/slave',
+    method: 'POST',
+  }).fail(function (err) {
+    console.log(err)
+    $.notify(err.responseText)
+  })
+})
