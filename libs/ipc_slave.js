@@ -118,7 +118,7 @@ module.exports.connect = function (addr) {
 
   socket.on('config', (data) => {
     console.log('reboot request from master')
-    setting.Reboot()
+    settings.reboot()
   })
 
   sendStatus()
