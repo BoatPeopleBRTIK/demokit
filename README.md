@@ -40,7 +40,7 @@ libtool --mode=install install test-launch /usr/local/bin/
 - Install TTS program (SVOX pico2wave)
 ```sh
 [ubuntu-host]# apt-get source libttspico-utils
-[ubuntu-host]# scp -r svox-1.0+git20130326/pico {your-710-board}
+[ubuntu-host]# scp -r svox-1.0+git20130326/pico {your-710-board(MASTER)}
 ```
 ```sh
 chmod +x autogen.sh
