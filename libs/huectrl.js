@@ -21,6 +21,8 @@ const EventEmitter = require('events')
 const util = require('util')
 const Hue = require('node-hue-api')
 
+let light_id = 1
+
 function updateHueApi (obj) {
   if (obj.ip == null) {
     return
@@ -36,13 +38,22 @@ function updateHueApi (obj) {
 
   settings.data.hue = obj.ip
   obj.api = new Hue.HueApi(obj.ip, settings.config.hue.username)
-  obj.api.setLightState(1, obj.lightstate.off(), (err, lights) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(lights)
+  obj.api.getFullState().then(function(result) {
+    console.log('Hue Lights:', result.lights)
+    for (var name in result.lights) {
+      console.log('Hue Light id:', name)
+      light_id = name;
+      break;
     }
-  })
+
+    obj.api.setLightState(light_id, obj.lightstate.off(), (err, lights) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log(lights)
+      }
+    })
+  }).done()
 }
 
 function searchUpnp (self) {
@@ -122,7 +133,7 @@ HueBridge.prototype.setAlert = function (cb) {
     return
   }
 
-  this.api.setLightState(1, { 'on': true, 'bri': 64, 'alert': 'lselect' }, (err, lights) => {
+  this.api.setLightState(light_id, { 'on': true, 'bri': 64, 'alert': 'lselect' }, (err, lights) => {
     console.log(lights)
     cb(err, lights)
   })
@@ -134,8 +145,8 @@ HueBridge.prototype.setOn = function (cb) {
     return
   }
 
-  //  this.api.setLightState(1, this.lightstate.on(), (err, lights) => {
-  this.api.setLightState(1, { 'on': true, 'bri': 64, 'alert': 'none' }, (err, lights) => {
+  //  this.api.setLightState(light_id, this.lightstate.on(), (err, lights) => {
+  this.api.setLightState(light_id, { 'on': true, 'bri': 64, 'alert': 'none' }, (err, lights) => {
     console.log(lights)
     cb(err, lights)
   })
@@ -147,7 +158,7 @@ HueBridge.prototype.setOff = function (cb) {
     return
   }
 
-  this.api.setLightState(1, this.lightstate.off(), (err, lights) => {
+  this.api.setLightState(light_id, this.lightstate.off(), (err, lights) => {
     console.log(lights)
     cb(err, lights)
   })
@@ -159,7 +170,7 @@ HueBridge.prototype.getStatus = function (cb) {
     return
   }
 
-  this.api.lightStatus(1, (err, result) => {
+  this.api.lightStatus(light_id, (err, result) => {
     console.log(result)
     cb(err, result)
   })
