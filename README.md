@@ -1,4 +1,4 @@
-[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
 
 # DemoKit
 
@@ -75,6 +75,8 @@ artik710# reset
   1. Setup static IP address using 710 board MAC address
 
 ##### BT pairing with 710 board(master)
+
+* Setup from console or webpage (http://192.168.0.10:9745/bt)
 ```sh
 bluetoothctl
 [bluetooth]# scan on
@@ -115,6 +117,7 @@ pactl set-card-profile 1 a2dp_sink
 
 ### Installing
 
+* Master board (indoor simulation)
 ```sh
 git clone https://github.com/SamsungARTIK/demokit
 cd demokit
@@ -122,16 +125,25 @@ npm install
 
 npm install -g forever forever-service
 
-# Master board (indoor simulation)
 forever-service install master --script bin/www
 service master start
 
-# Slave board (front door simulation)
+reboot
+```
+* Slave board (front door simulation)
+```sh
+git clone https://github.com/SamsungARTIK/demokit
+cd demokit
+npm install
+
+npm install -g forever forever-service
+
 forever-service install slave --script slave.js
 service slave start
 
 reboot
 ```
+
 ### Patch
 
 demokit/node_modules/mdns/lib/resolver_sequence_tasks.js
@@ -172,6 +184,11 @@ demokit/node_modules/mdns/lib/resolver_sequence_tasks.js
      - \+ SET PERMISSIONS FOR A SPECIFIC DEVICE
      - Belkin WeMo Insight Switch Proxy: Read + Write
      - Shell proxy: Read + Write
+     - Demokit front door proxy: Read + Write
+     - Demokit mplayer proxy: Read + Write
+     - Demokit button proxy: Read + Write
+     - Demokit alexa-voice-service proxy: Read + Write
+     - Demokit rtsp proxy: Read + Write
 1. Click 'DemoKit' from left panel
 1. Click 'SHOW CLIENT ID & SECRET' from right side
    - Client ID & Secret --> Copy to clipboard
@@ -192,10 +209,16 @@ demokit/node_modules/mdns/lib/resolver_sequence_tasks.js
 
 ## Using the DemoKit
 
-### Scenario #1
+### Scenario mode
 
+- Change Demokit mode to scenario mode (https://192.168.0.10:9745/setup)
 - Dingdong --> Press MIC btn --> say 'ask artik to unlock the front door' --> Release MIC btn
 - Press MIC btn --> say 'ask artik to lock the front door' --> Release MIC btn
+
+### Custom mode (controlled by ARTIK Cloud Rule)
+
+- Change Demokit mode to custom mode (https://192.168.0.10:9745/setup)
+- You can controll all modules(Dingdong, All buttons, Sliding door,...) from ARTIK Cloud Rules
 
 ## Open-source libraries/project used
 
