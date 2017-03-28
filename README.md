@@ -123,10 +123,10 @@ git clone https://github.com/SamsungARTIK/demokit
 cd demokit
 npm install
 
-npm install -g forever forever-service
-
-forever-service install master --script bin/www
-service master start
+npm install -g pm2
+pm2 start bin/www
+pm2 startup
+pm2 save
 
 reboot
 ```
@@ -136,13 +136,22 @@ git clone https://github.com/SamsungARTIK/demokit
 cd demokit
 npm install
 
-npm install -g forever forever-service
-
-forever-service install slave --script slave.js
-service slave start
+npm install -g pm2
+pm2 start slave.js
+pm2 startup
+pm2 save
 
 reboot
 ```
+
+* The **forever** and **forever-service** are no longer used due to bugs(does not kill child process).
+
+<pre><code><del>npm install -g forever forever-service
+forever-service install master --script bin/www
+service master start
+npm install -g forever forever-service
+forever-service install slave --script slave.js
+service slave start</del></code></pre>
 
 ### Patch
 
