@@ -4,6 +4,63 @@
 
 ARTIK Cloud and ARTIK Module Demo
 
+## Table of contents
+* [Features](#features)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installing](#installing)
+  * [Patch](#patch)
+* [Create your own Alexa Voice Service](#create-your-own-alexa-voice-service)
+* [Create your own ARTIK Cloud application](#create-your-own-artik-cloud-application)
+* [Link the Alexa, ARTIK Cloud and Devices to DemoKit](#link-the-alexa-artik-cloud-and-devices-to-demokit)
+* [Using the DemoKit](#using-the-demokit)
+  * [Scenario mode](#scenario-mode)
+  * [Custom mode (controlled by ARTIK Cloud Rule)](#custom-mode-controlled-by-artik-cloud-rule)
+* [Open-source libraries/project used](#open-source-librariesproject-used)
+* [License and Copyright](#license-and-copyright)
+
+## Features
+
+![diagram](/doc/diagram.png?raw=true)
+
+### Master board
+- Web Server (node.js)
+  - DemoKit [setup page](https://192.168.0.10:9745)
+  - OAuth2 with ARTIK Cloud
+  - OAuth2 with AVS(Alexa Voice Service)
+- AVS Client (node.js, AVS API v1)
+  - MIC Recording --> Send PCM to AVS --> Receive MP3 from AVS --> Play MP3
+  - Support Text->PCM->AVS for testing (SVOX pico2wave)
+- Connect with ARTIK LCD Display
+- Connect with BT Speaker
+  - Play Dingdong mp3
+- Play RTSP (GStreamer: gst-launch)
+  - Video source from Slave board ARTIK Camera
+  - Video source from Web cam
+- Control Hue blub (node.js)
+- Control Button & LED (node.js)
+  - GPIO
+- ARTIK Cloud proxy device
+  - Demokit alexa-voice-service proxy
+  - Demokit button proxy
+  - Demokit mplayer proxy
+  - Demokit rtsp proxy
+
+### Slave board
+- Connect with ARTIK Camera
+- RTSP Server (GStreamer: test-launch)
+- Control WeMo Switch (node.js, SSDP)
+- Control Sliding door (node.js)
+  - PWM
+- Control Deadbolt
+  - Power is controlled by WeMo
+- Control Button & LED (node.js)
+  - GPIO
+- ARTIK Cloud proxy device
+  - Demokit button proxy
+  - Demokit sliding door proxy
+  - Demokit front door proxy
+
 ## Getting Started
 
 ### Prerequisites
@@ -18,6 +75,9 @@ ARTIK Cloud and ARTIK Module Demo
 - Samsung Smartcam SNH-P6410BN
 
 #### Software - Initial setup
+- Download & Install OS image
+  - Download from [ARTIK 710 Firmware Image A710-OS-2.0.0](https://developer.artik.io/documentation/downloads.html#firmware)
+  - [Update guide](https://developer.artik.io/documentation/developer-guide/update-image/updating-artik-image.html)
 - Install dependency packages to each ARTIK 710 boards
 ```sh
 dnf update
