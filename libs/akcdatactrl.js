@@ -54,8 +54,20 @@ function akcMQTT (dev) {
     self.emit('actions', JSON.parse(message.toString()))
   })
 
+  this.client.on('close', function () {
+    console.log('mqtt close -', this.did)
+  })
+
+  this.client.on('offline', function () {
+    console.log('mqtt offline -', this.did)
+  })
+
+  this.client.on('reconnect', function () {
+    console.log('mqtt reconnect -', this.did)
+  })
+
   this.client.on('error', function (err) {
-    console.log(err)
+    console.error('mqtt error -', this.did, err)
     self.emit('error', err)
   })
 }
@@ -63,7 +75,11 @@ function akcMQTT (dev) {
 util.inherits(akcMQTT, EventEmitter)
 
 akcMQTT.prototype.sendMessage = function (jsonmsg, done) {
-  this.client.publish('/v1.1/messages/' + this.did, JSON.stringify(jsonmsg), done)
+  try {
+    this.client.publish('/v1.1/messages/' + this.did, JSON.stringify(jsonmsg), done)
+  } catch (err) {
+    console.log('mqtt publish failed -', this.did, err)
+  }
 }
 
 module.exports.MQTT = akcMQTT
@@ -197,8 +213,26 @@ function akcWS (dev, channel, uid) {
   this.con = null
   this.client = new WSClient()
 
+  this.client.on('connectFailed', function(error) {
+    console.error('connectFailed -', self.did, error)
+    console.error('retry after 3 secs')
+
+    setTimeout(function () {
+      self.client.connect('wss://api.artik.cloud/v1.1' + self.opts)
+    }, 3000)
+  })
+
   this.client.on('connect', function (con) {
     self.con = con
+    console.log('ws connected -', self.did)
+
+    con.on('error', function(error) {
+      console.error('ws connection error -', self.did, error)
+    })
+
+    con.on('close', function() {
+      console.log('ws connection closed -', self.did)
+    })
 
     con.on('message', function (message) {
       const obj = JSON.parse(message.utf8Data)
@@ -243,7 +277,16 @@ akcWS.prototype.sendMessage = function (jsonmsg, done) {
     data: jsonmsg
   }
 
-  this.con.sendUTF(JSON.stringify(req), done)
+  if (this.con) {
+    try {
+      this.con.sendUTF(JSON.stringify(req), done)
+    } catch (e) {
+      console.error(e)
+      done(e)
+    }
+  } else {
+    done('undefined connection')
+  }
 }
 
 akcWS.prototype.sendAction = function (jsonmsg, done) {
@@ -253,7 +296,16 @@ akcWS.prototype.sendAction = function (jsonmsg, done) {
     data: { actions: [jsonmsg] }
   }
 
-  this.con.sendUTF(JSON.stringify(req), done)
+  if (this.con) {
+    try {
+      this.con.sendUTF(JSON.stringify(req), done)
+    } catch (e) {
+      console.error(e)
+      done(e)
+    }
+  } else {
+    done('undefined connection')
+  }
 }
 
 module.exports.WS = akcWS
