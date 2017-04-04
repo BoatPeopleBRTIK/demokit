@@ -35,7 +35,11 @@ const settings = {
   },
   data_path: path.join(__dirname, '/../public/'),
   Save: function () {
-    fs.writeFile('./config.json', JSON.stringify(settings.config, null, 2))
+    try {
+      fs.writeFileSync('./config.json', JSON.stringify(settings.config, null, 2))
+    } catch (e) {
+      console.error(e)
+    }
   },
   reboot: function () {
     exec('shutdown -r now', function (err, stdout, stderr) {
