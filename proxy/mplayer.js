@@ -21,7 +21,7 @@ const ipc = require('../libs/ipc_slave')
 
 const MPlayer = require('mplayer')
 
-const playerProxy = new akcdata.MQTT(settings.config.artikcloud.devices.mplayer)
+const playerProxy = new akcdata.WS(settings.config.artikcloud.devices.mplayer)
 const playerHandle = new MPlayer()
 
 playerHandle.on('start', () => {
@@ -43,7 +43,7 @@ playerHandle.on('stop', () => {
 })
 
 playerProxy.on('connect', function () {
-  ipc.sendLog('MPlayer proxy for ARTIK Cloud connected (MQTT)')
+  ipc.sendLog('MPlayer proxy for ARTIK Cloud connected')
 })
 
 playerProxy.on('actions', function (data) {

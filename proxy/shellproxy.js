@@ -22,10 +22,10 @@ const ipc = require('../libs/ipc_slave')
 const hue = require('../libs/huectrl')
 const rtspPlayer = require('../libs/playrtsp')
 
-const shellProxy = new akcdata.MQTT(settings.config.artikcloud.devices.shell)
+const shellProxy = new akcdata.WS(settings.config.artikcloud.devices.shell)
 
 shellProxy.on('connect', function () {
-  ipc.sendLog('shell proxy for ARTIK Cloud connected (MQTT)')
+  ipc.sendLog('shell proxy for ARTIK Cloud connected')
 })
 
 shellProxy.on('actions', function (data) {

@@ -20,10 +20,10 @@ const settings = require('../libs/settings')
 const ipc = require('../libs/ipc_slave')
 const wemo = require('../libs/wemoctrl')
 
-const wemoProxy = new akcdata.MQTT(settings.config.artikcloud.devices.wemo)
+const wemoProxy = new akcdata.WS(settings.config.artikcloud.devices.wemo)
 
 wemoProxy.on('connect', function () {
-  ipc.sendLog('WeMo proxy for ARTIK Cloud connected (MQTT)')
+  ipc.sendLog('WeMo proxy for ARTIK Cloud connected')
 })
 
 wemoProxy.on('actions', function (data) {

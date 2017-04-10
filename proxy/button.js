@@ -18,12 +18,12 @@
 const akcdata = require('../libs/akcdatactrl')
 
 module.exports.setup = function (btn, device) {
-  const bp = new akcdata.MQTT(device)
+  const bp = new akcdata.WS(device)
 
   console.log('Setup button proxy: ', device)
 
   bp.on('connect', function () {
-    console.log('button proxy for ARTIK Cloud connected (MQTT)')
+    console.log('button proxy for ARTIK Cloud connected')
   })
 
   bp.on('actions', function (data) {

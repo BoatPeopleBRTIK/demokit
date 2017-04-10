@@ -20,10 +20,10 @@ const settings = require('../libs/settings')
 const avs = require('../libs/avs')
 const micrecorder = require('../libs/micrecorder')
 
-const avsProxy = new akcdata.MQTT(settings.config.artikcloud.devices.avs)
+const avsProxy = new akcdata.WS(settings.config.artikcloud.devices.avs)
 
 avsProxy.on('connect', function () {
-  console.log('avs proxy for ARTIK Cloud connected (MQTT)')
+  console.log('avs proxy for ARTIK Cloud connected')
 })
 
 avsProxy.on('actions', function (data) {

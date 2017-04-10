@@ -19,10 +19,10 @@ const akcdata = require('../libs/akcdatactrl')
 const settings = require('../libs/settings')
 const sdctrl = require('../libs/slidingdoorctrl')
 
-const sdProxy = new akcdata.MQTT(settings.config.artikcloud.devices.sliding)
+const sdProxy = new akcdata.WS(settings.config.artikcloud.devices.sliding)
 
 sdProxy.on('connect', function () {
-  console.log('slidingdoor proxy for ARTIK Cloud connected (MQTT)')
+  console.log('slidingdoor proxy for ARTIK Cloud connected')
 })
 
 sdProxy.on('actions', function (data) {

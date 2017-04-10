@@ -19,7 +19,7 @@ const akcdata = require('../libs/akcdatactrl')
 const settings = require('../libs/settings')
 const rtsp = require('../libs/playrtsp')
 
-const rtspProxy = new akcdata.MQTT(settings.config.artikcloud.devices.rtsp)
+const rtspProxy = new akcdata.WS(settings.config.artikcloud.devices.rtsp)
 
 rtsp.on('added', (name, url) => {
   rtspProxy.sendMessage({ added: { name: name, url: url } }, (err) => {
@@ -54,7 +54,7 @@ rtsp.on('stop', () => {
 })
 
 rtspProxy.on('connect', () => {
-  console.log('RTSP proxy for ARTIK Cloud connected (MQTT)')
+  console.log('RTSP proxy for ARTIK Cloud connected')
 })
 
 rtspProxy.on('actions', (data) => {

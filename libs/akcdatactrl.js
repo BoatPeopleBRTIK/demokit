@@ -245,7 +245,7 @@ function akcWS (dev, channel, uid) {
         self.emit('message', obj)
       } else {
         if (obj.type === 'action') {
-          self.emit('actions', obj)
+          self.emit('actions', obj.data)
         }
       }
     })
