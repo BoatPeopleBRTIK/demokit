@@ -60,27 +60,29 @@ function getStatus (cb) {
 }
 
 function setOn (cb) {
-  if (handle == null) {
-    cb(new Error("can't find wemo"))
-    return
-  }
-
   console.log('sd up')
   sd.up()
   sd.enable()
 
-  handle.setBinaryState(1, (err, result) => {
-    if (err) {
-      cb(err)
-      return
-    }
+  if (handle == null) {
+    cb(new Error("can't find wemo"))
+  } else {
+    handle.setBinaryState(1, (err, result) => {
+      if (err) {
+        cb(err)
+        return
+      }
 
-    cb(null, result)
-  })
+      cb(null, result)
+    })
+  }
 }
 
 function setOff (cb) {
   if (handle == null) {
+    console.log('sd down')
+    sd.down()
+    sd.enable()
     cb(new Error("can't find wemo"))
     return
   }
