@@ -21,7 +21,7 @@ const EventEmitter = require('events')
 const util = require('util')
 const Hue = require('node-hue-api')
 
-let light_id = 1
+let lightId = 1
 
 function updateHueApi (obj) {
   if (obj.ip == null) {
@@ -38,15 +38,15 @@ function updateHueApi (obj) {
 
   settings.data.hue = obj.ip
   obj.api = new Hue.HueApi(obj.ip, settings.config.hue.username)
-  obj.api.getFullState().then(function(result) {
+  obj.api.getFullState().then(function (result) {
     console.log('Hue Lights:', result.lights)
     for (var name in result.lights) {
       console.log('Hue Light id:', name)
-      light_id = name;
-      break;
+      lightId = name
+      break
     }
 
-    obj.api.setLightState(light_id, obj.lightstate.off(), (err, lights) => {
+    obj.api.setLightState(lightId, obj.lightstate.off(), (err, lights) => {
       if (err) {
         console.log(err)
       } else {
@@ -133,7 +133,7 @@ HueBridge.prototype.setAlert = function (cb) {
     return
   }
 
-  this.api.setLightState(light_id, { 'on': true, 'bri': 64, 'alert': 'lselect' }, (err, lights) => {
+  this.api.setLightState(lightId, { 'on': true, 'bri': 64, 'alert': 'lselect' }, (err, lights) => {
     console.log(lights)
     cb(err, lights)
   })
@@ -145,8 +145,8 @@ HueBridge.prototype.setOn = function (cb) {
     return
   }
 
-  //  this.api.setLightState(light_id, this.lightstate.on(), (err, lights) => {
-  this.api.setLightState(light_id, { 'on': true, 'bri': 64, 'alert': 'none' }, (err, lights) => {
+  // this.api.setLightState(lightId, this.lightstate.on(), (err, lights) => {
+  this.api.setLightState(lightId, { 'on': true, 'bri': 64, 'alert': 'none' }, (err, lights) => {
     console.log(lights)
     cb(err, lights)
   })
@@ -158,7 +158,7 @@ HueBridge.prototype.setOff = function (cb) {
     return
   }
 
-  this.api.setLightState(light_id, this.lightstate.off(), (err, lights) => {
+  this.api.setLightState(lightId, this.lightstate.off(), (err, lights) => {
     console.log(lights)
     cb(err, lights)
   })
@@ -170,7 +170,7 @@ HueBridge.prototype.getStatus = function (cb) {
     return
   }
 
-  this.api.lightStatus(light_id, (err, result) => {
+  this.api.lightStatus(lightId, (err, result) => {
     console.log(result)
     cb(err, result)
   })
